@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Firdaus Haykal — Creativepreneur & Creative Director</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #fafafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --purple-neon: #8b5cf6;
+            --purple-light: #ede9fe;
+            --purple-glow: rgba(139, 92, 246, 0.25);
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAV */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.7rem;
+            color: var(--purple-neon);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--purple-neon);
+        }
+
+        .lang-switch {
+            background: var(--purple-light);
+            color: var(--purple-neon);
+            border: 1px solid var(--purple-neon);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .lang-switch:hover {
+            background: var(--purple-neon);
+            color: #fff;
+            box-shadow: 0 0 12px var(--purple-glow);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 8rem 5% 4rem;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-neon), #c084fc);
+            padding: 6px;
+            box-shadow: 0 10px 30px var(--purple-glow);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+        }
+
+        .headline {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .headline span {
+            color: var(--purple-neon);
+            text-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        .sub-headline {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--purple-neon);
+            padding-left: 1rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.6rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--purple-neon);
+            color: #fff;
+            box-shadow: 0 4px 15px var(--purple-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--purple-glow);
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--purple-neon);
+            color: var(--purple-neon);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--purple-neon);
+            color: #fff;
+            border-color: var(--purple-neon);
+            box-shadow: 0 0 10px var(--purple-glow);
+        }
+
+        .active-project-card {
+            margin-top: 1.5rem;
+            background: #fff;
+            border: 1px solid var(--purple-neon);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .status-badge {
+            width: 12px;
+            height: 12px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            flex-shrink: 0;
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--purple-neon);
+            border-radius: 2px;
+        }
+
+        /* ABOUT SECTION */
+        .about-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .focus-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .focus-tag {
+            background-color: var(--purple-light);
+            color: var(--purple-neon);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* PRESTASI SECTION */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .cert-card:hover {
+            border-color: var(--purple-neon);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .cert-badge {
+            color: var(--purple-neon);
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* PROYEK SECTION */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            border-color: var(--purple-neon);
+            box-shadow: 0 8px 25px var(--purple-glow);
+        }
+
+        /* PENGALAMAN SECTION */
+        .exp-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .exp-column {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .exp-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--purple-neon);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--purple-light);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--purple-neon);
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-list {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-list li {
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 0.8rem;
+        }
+
+        .timeline-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--purple-neon);
+        }
+
+        /* KEAHLIAN SECTION */
+        .skills-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .skill-box h4 {
+            color: var(--purple-neon);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .software-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .software-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .software-pill {
+            background: var(--purple-light);
+            color: var(--purple-neon);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* KONTAK SECTION */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 12px;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: var(--purple-light);
+            color: var(--purple-neon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--purple-neon);
+            box-shadow: 0 0 8px var(--purple-glow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 7rem;
+            }
+
+            .sub-headline {
+                border-left: none;
+                padding-left: 0;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .exp-container, .skills-wrapper, .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none; /* Can be toggled with hamburger menu in future update */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="#" class="logo">
+            <span class="logo-title">FIRDAUS MEDIA</span>
+            <span class="logo-subtitle">Your Creative Media Partner</span>
+        </a>
+        <nav>
+            <a href="#beranda" data-id="Beranda" data-en="Home">Beranda</a>
+            <a href="#tentang" data-id="Tentang" data-en="About">Tentang</a>
+            <a href="#pengalaman" data-id="Pengalaman" data-en="Experience">Pengalaman</a>
+            <a href="#keahlian" data-id="Keahlian" data-en="Skills">Keahlian</a>
+            <a href="#kontak" data-id="Kontak" data-en="Contact">Kontak</a>
+        </nav>
+        <button class="lang-switch" onclick="toggleLanguage()">ID / ENG</button>
+    </header>
+
+    <!-- BERANDA (HERO) -->
+    <section id="beranda" class="hero">
+        <div class="hero-content">
+            <h1 class="headline">
+                Hai! Saya <br><span>Muhammad Firdaus Haykal</span>
+            </h1>
+            <p class="sub-headline" id="txt-role">
+                Creativepreneur & Creative Director di Firdaus Media Agency.
+            </p>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);" id="txt-subhead">
+                "Saya membantu brand membangun identitas profesional dan komunikasi pemasaran yang strategis serta berkelanjutan."
+            </p>
+            
+            <div class="hero-cta">
+                <a href="#proyek" class="btn btn-primary"><i class="fa-solid fa-briefcase"></i> Lihat Proyek</a>
+                <a href="#kontak" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> Hubungi Saya</a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://instagram.com/mfirdaushaykal" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+
+            <div class="active-project-card">
+                <div class="status-badge"></div>
+                <div>
+                    <strong style="font-size: 0.85rem; color: var(--purple-neon); text-transform: uppercase;">Proyek Berlangsung</strong>
+                    <p style="font-size: 0.9rem; font-weight: 600;">Firdaus Media - Initiating Creative & Strategic Marketing Agency (Madiun, ID)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-avatar">
+            <!-- Foto Profil Pengguna -->
+            <img src="https://via.placeholder.com/280x280/8b5cf6/ffffff?text=Firdaus+Haykal" alt="Muhammad Firdaus Haykal">
+        </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section id="tentang">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Muhammad Firdaus Haykal</h3>
+            <p class="about-text" id="txt-about">
+                Seorang Creativepreneur dan Graphic Designer yang berbasis di Indonesia dan memulai karier profesionalnya pada tahun 2023. Memiliki keminatan mendalam terhadap seni dan komunikasi audiovisual sejak kecil, serta telah berpengalaman dan menguasai berbagai keterampilan di bidang media kreatif. Menikmati membuat gebrakan dan inovasi kreatif dalam setiap visual atau proyek yang ditangani.
+            </p>
+            <h4 style="margin-bottom: 0.8rem;">Fokus & Minat Utama:</h4>
+            <div class="focus-tags">
+                <span class="focus-tag"><i class="fa-solid fa-bullhorn"></i> Media Event & Management</span>
+                <span class="focus-tag"><i class="fa-solid fa-clapperboard"></i> Creative Production & Directing</span>
+                <span class="focus-tag"><i class="fa-solid fa-chart-line"></i> Social Media & Digital Marketing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESTASI -->
+    <section id="prestasi">
+        <h2 class="section-title">Prestasi & Sertifikasi</h2>
+        <div class="grid-2">
+            <div class="cert-card">
+                <div class="cert-badge"><i class="fa-solid fa-trophy"></i> Juara 1</div>
+                <h3>Poster Kreatif Ekonomi Islam</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Sharia Economic Fest (SE-FEST) UIN Sunan Gunung Djati Bandung 2025</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-badge"><i class="fa-solid fa-trophy"></i> Juara 1</div>
+                <h3>Desain Grafis Produk</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Classmeeting GOLDEN GENERATION SMK Negeri 2 Kota Madiun 2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYEK -->
+    <section id="proyek">
+        <h2 class="section-title">Proyek Unggulan</h2>
+        <div class="grid-2">
+            <div class="project-card">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--purple-neon);">2026</span>
+                <h3 style="margin: 0.5rem 0;">Visual Rebranding & Digital Optimization</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">GARAGE86 Professional Car Services Magetan</p>
+            </div>
+            <div class="project-card">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--purple-neon);">2026</span>
+                <h3 style="margin: 0.5rem 0;">Creative Media Partner Sponsorship</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">MILAD KE-23 HAMFARA 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PENGALAMAN -->
+    <section id="pengalaman">
+        <h2 class="section-title">Pengalaman Organisasi & Kerja</h2>
+        <div class="exp-container">
+            <!-- Pendidikan & Organisasi -->
+            <div class="exp-column">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Pendidikan & Organisasi</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-title">STEI Hamfara Yogyakarta</div>
+                    <div class="timeline-date">S1 Manajemen Bisnis Syariah (2024 - Sekarang)</div>
+                    <ul class="timeline-list">
+                        <li>Ketua BEM STEI Hamfara Kabinet Konstelasi (2026/2027)</li>
+                        <li>Ketua Pelaksana Seminar Teatrikal GEO Hamfara (2026)</li>
+                        <li>Koordinator Divisi Media & Informasi Milad Ke-23 Hamfara (2026)</li>
+                        <li>Koordinator Divisi Media Pekan Ta'aruf STEI Hamfara (2026)</li>
+                        <li>Kepala Dept. Komunikasi & Informasi BEM Kabinet Revolusi (2025/2026)</li>
+                        <li>Koordinator Divisi Media B-MELT Kulon Progo (2025)</li>
+                        <li>Koordinator Divisi Media Talkshow GEO Hamfara (2025)</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">SMK Negeri 2 Kota Madiun</div>
+                    <div class="timeline-date">Jurusan Multimedia (2021 - 2024)</div>
+                    <ul class="timeline-list">
+                        <li>Koordinator Divisi Kominfo OSIS (2022/2023)</li>
+                        <li>Kepala Tim Redaksi & Jurnalis JAC (2022/2023)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pekerjaan -->
+            <div class="exp-column">
+                <h3><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-title">DESAINER GRAFIS</div>
+                    <div class="timeline-date">THE OWNER GROUP (2026)</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">FREELANCE DESAINER GRAFIS</div>
+                    <div class="timeline-date">FIRDAUS MEDIA (2025 - Sekarang)</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">ADMIN MEDIA SOSIAL & DESAINER GRAFIS</div>
+                    <div class="timeline-date">ZISWAH Hamfara (2025)</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">MAGANG DESAINER GRAFIS REMOTE</div>
+                    <div class="timeline-date">CREATIVE.UX Jakarta (2023)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEAHLIAN -->
+    <section id="keahlian">
+        <h2 class="section-title">Keahlian & Perangkat Software</h2>
+        <div class="skills-wrapper">
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <h4><i class="fa-solid fa-palette"></i> Desain Kreatif & Visual</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Desain Grafis, Identitas Visual, Pengembangan Konsep Kreatif, Komunikasi Visual.</p>
+                </div>
+                <div class="skill-box">
+                    <h4><i class="fa-solid fa-video"></i> Produksi Audiovisual</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Foto-Videografi, Penyuntingan Video, Penulisan Naskah, Publikasi Konten.</p>
+                </div>
+                <div class="skill-box">
+                    <h4><i class="fa-solid fa-users"></i> Komunikasi & Kepemimpinan</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Komunikasi Strategis, Pengelolaan Media, Kepemimpinan & Koordinasi Tim.</p>
+                </div>
+                <div class="skill-box">
+                    <h4><i class="fa-solid fa-chart-pie"></i> Manajemen Kreatif</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Manajemen Proyek & Acara, Perencanaan Kegiatan, Pengelolaan Relasi Kemitraan.</p>
+                </div>
+            </div>
+
+            <div class="software-box">
+                <h4>Software & Tools</h4>
+                <div class="software-list">
+                    <span class="software-pill">Adobe Photoshop</span>
+                    <span class="software-pill">Premiere Pro</span>
+                    <span class="software-pill">Lightroom</span>
+                    <span class="software-pill">Figma</span>
+                    <span class="software-pill">Affinity</span>
+                    <span class="software-pill">CorelDraw</span>
+                    <span class="software-pill">CapCut PC</span>
+                    <span class="software-pill">OBS Studio</span>
+                    <span class="software-pill">MS Office</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak">
+        <h2 class="section-title">Mari Terhubung</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">0822-3007-6610</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div>
+                        <strong>Email Kantor / Personal</strong>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">alfirdausymedia@gmail.com</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">namaguehaykal@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <strong>Domisili Aktif</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Madiun & Yogyakarta, Indonesia</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="sendToWhatsApp(event)">
+                <h3 style="margin-bottom: 0.5rem;">Kirim Pesan Cepat</h3>
+                <div class="form-group">
+                    <label>Nama Anda</label>
+                    <input type="text" id="sender-name" placeholder="Masukkan nama" required>
+                </div>
+                <div class="form-group">
+                    <label>Subjek / Topik</label>
+                    <input type="text" id="sender-subject" placeholder="Diskusi Proyek / Kerjasama" required>
+                </div>
+                <div class="form-group">
+                    <label>Pesan</label>
+                    <textarea id="sender-message" rows="4" placeholder="Tuliskan pesan Anda..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer; justify-content: center;">
+                    <i class="fa-solid fa-paper-plane"></i> Kirim via WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Muhammad Firdaus Haykal (Firdaus Media). Built with HTML & CSS.</p>
+    </footer>
+
+    <!-- JAVASCRIPT UTILS -->
+    <script>
+        // Form to WhatsApp Direct Integration
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value;
+            const subject = document.getElementById('sender-subject').value;
+            const message = document.getElementById('sender-message').value;
+
+            const targetPhone = "6282230076610";
+            const text = `Halo Firdaus,%0ANama: ${encodeURIComponent(name)}%0ASubjek: ${encodeURIComponent(subject)}%0APesan: ${encodeURIComponent(message)}`;
+
+            window.open(`https://wa.me/${targetPhone}?text=${text}`, '_blank');
+        }
+
+        // Language Switcher Logic
+        let currentLang = 'ID';
+        function toggleLanguage() {
+            currentLang = currentLang === 'ID' ? 'ENG' : 'ID';
+            
+            // Switch Nav Links
+            document.querySelectorAll('nav a').forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang.toLowerCase()}`);
+            });
+
+            // Example dynamic text updates
+            if(currentLang === 'ENG') {
+                document.getElementById('txt-role').innerText = "Creativepreneur & Creative Director at Firdaus Media Agency.";
+                document.getElementById('txt-subhead').innerText = '"I help brands build professional identities and strategic, sustainable marketing communications."';
+            } else {
+                document.getElementById('txt-role').innerText = "Creativepreneur & Creative Director di Firdaus Media Agency.";
+                document.getElementById('txt-subhead').innerText = '"Saya membantu brand membangun identitas profesional dan komunikasi pemasaran yang strategis serta berkelanjutan."';
+            }
+        }
+    </script>
+</body>
+</html>
