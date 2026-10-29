@@ -6,8 +6,9 @@
 }
 
 :root {
-    --primary: #1e3a8a;
-    --primary-light: #2563eb;
+    --primary: #8b5cf6;          /* Neon Purple Utama */
+    --primary-light: #a855f7;    /* Neon Purple Cerah */
+    --purple-light: #f3e8ff;     /* Accent Purple Lembut */
     --accent: #f59e0b;
     --bg-light: #ffffff;
     --bg-alt: #f8fafc;
@@ -100,8 +101,8 @@ body {
 }
 
 .badge {
-    background: #dbeafe;
-    color: var(--primary-light);
+    background: var(--purple-light);
+    color: var(--primary);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -115,7 +116,7 @@ body {
 }
 
 .highlight {
-    color: var(--primary-light);
+    color: var(--primary);
 }
 
 .sub-headline {
@@ -139,12 +140,12 @@ body {
 }
 
 .btn-primary {
-    background: var(--primary-light);
+    background: var(--primary);
     color: white;
 }
 
 .btn-primary:hover {
-    background: var(--primary);
+    background: var(--primary-light);
 }
 
 .btn-secondary {
@@ -160,7 +161,7 @@ body {
 }
 
 .social-links a:hover {
-    color: var(--primary-light);
+    color: var(--primary);
 }
 
 .active-project-card {
@@ -182,11 +183,31 @@ body {
     border-radius: 50%;
 }
 
-.image-frame img {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+/* KONTAINER UTAMA FOTO HERO */
+.image-frame {
+    position: relative;
+    width: 400px !important;
+    max-width: 400px !important;
+    height: 480px !important;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-shrink: 0 !important;
 }
+
+/* ELEMEN FOTO PNG */
+.image-frame img {
+            width: 150%;
+            height: 150%;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            
+            /* Gradasi pudar ke SEMUA arah (atas, bawah, kiri, kanan) agar kotak fotomu hilang total */
+            mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 85%);
+            -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 85%);
+        }
 
 /* SECTIONS */
 .section {
@@ -208,7 +229,7 @@ body {
     display: block;
     width: 50px;
     height: 4px;
-    background: var(--primary-light);
+    background: var(--primary);
     margin-top: 8px;
     border-radius: 2px;
 }
@@ -231,7 +252,7 @@ body {
 }
 
 .about-focus i {
-    color: var(--primary-light);
+    color: var(--primary);
     margin-right: 8px;
 }
 
@@ -264,7 +285,7 @@ body {
 }
 
 .timeline-item {
-    border-left: 3px solid var(--primary-light);
+    border-left: 3px solid var(--primary);
     padding-left: 20px;
     margin-bottom: 25px;
 }
@@ -334,7 +355,7 @@ body {
 
 .info-item i {
     font-size: 1.4rem;
-    color: var(--primary-light);
+    color: var(--primary);
 }
 
 .contact-form form {
@@ -364,6 +385,6 @@ footer {
         grid-template-columns: 1fr;
     }
     .nav-links {
-        display: none; /* Bisa dikembangkan jadi menu hamburger */
+        display: none;
     }
 }

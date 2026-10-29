@@ -13,7 +13,7 @@
     
     <style>
         :root {
-            --bg-color: #fafafc;
+            --bg-color: #ffffff;
             --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -112,37 +112,42 @@
             box-shadow: 0 0 12px var(--purple-glow);
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION (PERBAIKAN GRID) */
         .hero {
-            padding: 8rem 5% 4rem;
+            padding: 9rem 5% 4rem;
             min-height: 90vh;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
             align-items: center;
-            justify-content: space-between;
             gap: 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .hero-content {
             max-width: 650px;
         }
 
-        .hero-avatar {
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--purple-neon), #c084fc);
-            padding: 6px;
-            box-shadow: 0 10px 30px var(--purple-glow);
+        .image-frame {
             position: relative;
-            flex-shrink: 0;
+            width: 400px;     /* Ubah dari 300px jadi lebih besar */
+            height: 480px;    /* Ubah dari 380px jadi lebih tinggi */
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
         }
 
-        .hero-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            background-color: #e2e8f0;
+        .image-frame img {
+            width: 150%;
+            height: 150%;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            
+            /* Gradasi pudar ke SEMUA arah (atas, bawah, kiri, kanan) agar kotak fotomu hilang total */
+            mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 85%);
+            -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 85%);
         }
 
         .headline {
@@ -161,7 +166,7 @@
             font-size: 1.15rem;
             color: var(--text-muted);
             font-style: italic;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             border-left: 4px solid var(--purple-neon);
             padding-left: 1rem;
         }
@@ -171,7 +176,7 @@
             gap: 1rem;
             align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn {
@@ -210,6 +215,7 @@
         .social-links {
             display: flex;
             gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .social-icon {
@@ -234,7 +240,6 @@
         }
 
         .active-project-card {
-            margin-top: 1.5rem;
             background: #fff;
             border: 1px solid var(--purple-neon);
             border-radius: 12px;
@@ -257,6 +262,8 @@
         /* SECTIONS GENERAL */
         section {
             padding: 5rem 5%;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .section-title {
@@ -308,14 +315,14 @@
             font-size: 0.9rem;
         }
 
-        /* PRESTASI SECTION */
+        /* GRID UMUM */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        .cert-card {
+        .cert-card, .project-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 14px;
@@ -323,10 +330,10 @@
             transition: var(--transition);
         }
 
-        .cert-card:hover {
+        .cert-card:hover, .project-card:hover {
             border-color: var(--purple-neon);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px var(--purple-glow);
         }
 
         .cert-badge {
@@ -337,22 +344,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        /* PROYEK SECTION */
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 2rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            border-color: var(--purple-neon);
-            box-shadow: 0 8px 25px var(--purple-glow);
         }
 
         /* PENGALAMAN SECTION */
@@ -439,7 +430,7 @@
             gap: 1.5rem;
         }
 
-        .skill-box {
+        .skill-box, .software-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -450,13 +441,6 @@
             color: var(--purple-neon);
             margin-bottom: 0.8rem;
             font-size: 1rem;
-        }
-
-        .software-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
         }
 
         .software-list {
@@ -556,7 +540,7 @@
         /* RESPONSIVE DESIGN */
         @media (max-width: 900px) {
             .hero {
-                flex-direction: column-reverse;
+                grid-template-columns: 1fr;
                 text-align: center;
                 padding-top: 7rem;
             }
@@ -575,7 +559,7 @@
             }
 
             nav {
-                display: none; /* Can be toggled with hamburger menu in future update */
+                display: none;
             }
         }
     </style>
@@ -632,9 +616,9 @@
             </div>
         </div>
 
-        <div class="hero-avatar">
-            <!-- Foto Profil Pengguna -->
-            <img src="https://via.placeholder.com/280x280/8b5cf6/ffffff?text=Firdaus+Haykal" alt="Muhammad Firdaus Haykal">
+        <!-- FOTO PROFIL DENGAN EFEK GLOW & PNG TRANSPARAN -->
+        <div class="image-frame">
+            <img src="foto-profil.jpg.jpg" alt="Muhammad Firdaus Haykal">
         </div>
     </section>
 
@@ -847,7 +831,6 @@
 
     <!-- JAVASCRIPT UTILS -->
     <script>
-        // Form to WhatsApp Direct Integration
         function sendToWhatsApp(e) {
             e.preventDefault();
             const name = document.getElementById('sender-name').value;
@@ -860,17 +843,14 @@
             window.open(`https://wa.me/${targetPhone}?text=${text}`, '_blank');
         }
 
-        // Language Switcher Logic
         let currentLang = 'ID';
         function toggleLanguage() {
             currentLang = currentLang === 'ID' ? 'ENG' : 'ID';
             
-            // Switch Nav Links
             document.querySelectorAll('nav a').forEach(el => {
                 el.innerText = el.getAttribute(`data-${currentLang.toLowerCase()}`);
             });
 
-            // Example dynamic text updates
             if(currentLang === 'ENG') {
                 document.getElementById('txt-role').innerText = "Creativepreneur & Creative Director at Firdaus Media Agency.";
                 document.getElementById('txt-subhead').innerText = '"I help brands build professional identities and strategic, sustainable marketing communications."';
