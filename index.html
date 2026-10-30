@@ -24,6 +24,18 @@
             --transition: all 0.3s ease;
         }
 
+        /* Tema Dark Mode */
+        [data-theme="dark"] {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --purple-neon: #a78bfa;
+            --purple-light: rgba(139, 92, 246, 0.15);
+            --border-color: #1f2937;
+            --purple-glow: rgba(167, 139, 250, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -37,6 +49,7 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* HEADER & NAV */
@@ -45,7 +58,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--bg-color);
+            opacity: 0.95;
             backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
@@ -53,6 +67,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
         }
 
         .logo {
@@ -61,25 +76,10 @@
             text-decoration: none;
         }
 
-        .logo-title {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-subtitle {
-            font-size: 0.7rem;
-            color: var(--purple-neon);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
         nav {
             display: flex;
             align-items: center;
-            gap: 1.8rem;
+            gap: 1.5rem;
         }
 
         nav a {
@@ -94,7 +94,13 @@
             color: var(--purple-neon);
         }
 
-        .lang-switch {
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .lang-switch, .theme-switch {
             background: var(--purple-light);
             color: var(--purple-neon);
             border: 1px solid var(--purple-neon);
@@ -104,15 +110,25 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .lang-switch:hover {
+        .lang-switch:hover, .theme-switch:hover {
             background: var(--purple-neon);
             color: #fff;
             box-shadow: 0 0 12px var(--purple-glow);
         }
 
-        /* HERO SECTION (PERBAIKAN GRID) */
+        .theme-switch {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            padding: 0;
+        }
+
+        /* HERO SECTION */
         .hero {
             padding: 9rem 5% 4rem;
             min-height: 90vh;
@@ -130,8 +146,8 @@
 
         .image-frame {
             position: relative;
-            width: 400px;     /* Ubah dari 300px jadi lebih besar */
-            height: 480px;    /* Ubah dari 380px jadi lebih tinggi */
+            width: 400px;    /* Lebar frame, bisa disesuaikan */
+            height: 480px;   /* Tinggi frame, bisa disesuaikan */
             margin: 0 auto;
             display: flex;
             align-items: flex-end;
@@ -139,15 +155,18 @@
         }
 
         .image-frame img {
-            width: 150%;
-            height: 150%;
-            object-fit: contain;
+            width: 135%;
+            height: 135%;
+            object-fit: cover; /* Menyesuaikan agar foto pas menutupi area frame */
+            object-position: center top; /* Fokus ke arah wajah */
             position: relative;
             z-index: 2;
             
-            /* Gradasi pudar ke SEMUA arah (atas, bawah, kiri, kanan) agar kotak fotomu hilang total */
-            mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 85%);
-            -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 85%);
+            /* ATUR EFEK RADIAL DI SINI */
+            /* Angka 50% / 60% mengatur seberapa lebar area foto yang terlihat tajam, 
+               sisanya di luar itu akan pudar secara melingkar */
+            mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%);
+            -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%);
         }
 
         .headline {
@@ -157,9 +176,11 @@
             margin-bottom: 1rem;
         }
 
-        .headline span {
-            color: var(--purple-neon);
-            text-shadow: 0 0 15px var(--purple-glow);
+        /* Gradasi Ungu Neon */
+        .neon-gradient-text {
+            background: linear-gradient(135deg, #a855f7, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .sub-headline {
@@ -188,21 +209,24 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background-color: var(--purple-neon);
-            color: #fff;
+        .neon-gradient-btn {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            color: #ffffff;
+            border: none;
             box-shadow: 0 4px 15px var(--purple-glow);
         }
 
-        .btn-primary:hover {
+        .neon-gradient-btn:hover {
             transform: translateY(-2px);
+            opacity: 0.95;
             box-shadow: 0 6px 20px var(--purple-glow);
         }
 
         .btn-secondary {
-            background-color: #fff;
+            background-color: var(--card-bg);
             color: var(--text-main);
             border: 1px solid var(--border-color);
         }
@@ -222,7 +246,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
@@ -240,7 +264,7 @@
         }
 
         .active-project-card {
-            background: #fff;
+            background: var(--card-bg);
             border: 1px solid var(--purple-neon);
             border-radius: 12px;
             padding: 1rem 1.5rem;
@@ -285,19 +309,28 @@
             border-radius: 2px;
         }
 
-        /* ABOUT SECTION */
+        /* TENTANG SAYA */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
         .about-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 2.5rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: var(--transition);
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
 
         .focus-tags {
@@ -318,21 +351,22 @@
         /* GRID UMUM */
         .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .cert-card, .project-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.5rem;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
             transition: var(--transition);
         }
 
         .cert-card:hover, .project-card:hover {
             border-color: var(--purple-neon);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: 0 10px 25px var(--purple-glow);
         }
 
@@ -340,10 +374,70 @@
             color: var(--purple-neon);
             font-weight: 800;
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            background: var(--purple-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* MODAL POP-UP */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            justify-content: center; align-items: center;
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            color: var(--text-main);
+            padding: 2.5rem;
+            border-radius: 16px;
+            max-width: 850px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem; right: 1.2rem;
+            background: var(--purple-light); 
+            color: var(--purple-neon);
+            border: none;
+            width: 36px; height: 36px; border-radius: 50%;
+            font-size: 1.2rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--purple-neon);
+            color: #fff;
+        }
+
+        .modal-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .modal-img-item img {
+            width: 100%; height: 180px;
+            object-fit: contain; background: var(--bg-color);
+            border-radius: 8px; border: 1px solid var(--border-color);
+            display: block;
         }
 
         /* PENGALAMAN SECTION */
@@ -358,6 +452,7 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 2rem;
+            transition: var(--transition);
         }
 
         .exp-column h3 {
@@ -435,6 +530,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 1.5rem;
+            transition: var(--transition);
         }
 
         .skill-box h4 {
@@ -480,6 +576,7 @@
             border: 1px solid var(--border-color);
             padding: 1.2rem;
             border-radius: 12px;
+            transition: var(--transition);
         }
 
         .info-icon {
@@ -502,6 +599,7 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            transition: var(--transition);
         }
 
         .form-group {
@@ -518,6 +616,8 @@
         .form-group input, .form-group textarea {
             padding: 0.8rem;
             border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-main);
             border-radius: 8px;
             font-family: inherit;
             outline: none;
@@ -554,7 +654,11 @@
                 justify-content: center;
             }
 
-            .exp-container, .skills-wrapper, .contact-container {
+            .exp-container, .skills-wrapper, .contact-container, .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-gallery-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -564,39 +668,45 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <header>
         <a href="#" class="logo">
-            <!-- Ganti teks logo dengan tag gambar logo PNG kamu -->
             <img src="logopojok.png" alt="Firdaus Media Logo" style="height: 75px; width: auto; object-fit: contain;">
         </a>
         <nav>
             <a href="#beranda" data-id="Beranda" data-en="Home">Beranda</a>
             <a href="#tentang" data-id="Tentang" data-en="About">Tentang</a>
+            <a href="#prestasi" data-id="Prestasi" data-en="Awards">Prestasi</a>
+            <a href="#proyek" data-id="Proyek" data-en="Projects">Proyek</a>
             <a href="#pengalaman" data-id="Pengalaman" data-en="Experience">Pengalaman</a>
             <a href="#keahlian" data-id="Keahlian" data-en="Skills">Keahlian</a>
             <a href="#kontak" data-id="Kontak" data-en="Contact">Kontak</a>
         </nav>
-        <button class="lang-switch" onclick="toggleLanguage()">ID / ENG</button>
+        <div class="nav-actions">
+            <button class="theme-switch" onclick="toggleTheme()" title="Ganti Tema">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="lang-switch" onclick="toggleLanguage()">ID / ENG</button>
+        </div>
     </header>
 
     <!-- BERANDA (HERO) -->
     <section id="beranda" class="hero">
         <div class="hero-content">
             <h1 class="headline">
-                Hai! Saya <br><span>Muhammad Firdaus Haykal</span>
+                <span data-id="Halo! Saya" data-en="Hello! I'm">Halo! Saya</span> <br><span class="neon-gradient-text">Muhammad Firdaus Haykal</span>
             </h1>
-            <p class="sub-headline" id="txt-role">
+            <p class="sub-headline" id="txt-role" data-id="Creativepreneur & Creative Director di Firdaus Media Agency." data-en="Creativepreneur & Creative Director at Firdaus Media Agency.">
                 Creativepreneur & Creative Director di Firdaus Media Agency.
             </p>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);" id="txt-subhead">
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);" id="txt-subhead" data-id='"Saya membantu brand membangun identitas profesional dan komunikasi pemasaran yang strategis serta berkelanjutan."' data-en='"I help brands build professional identities and strategic, sustainable marketing communications."'>
                 "Saya membantu brand membangun identitas profesional dan komunikasi pemasaran yang strategis serta berkelanjutan."
             </p>
             
             <div class="hero-cta">
-                <a href="#proyek" class="btn btn-primary"><i class="fa-solid fa-briefcase"></i> Lihat Proyek</a>
-                <a href="#kontak" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> Hubungi Saya</a>
+                <a href="#proyek" class="btn neon-gradient-btn"><i class="fa-solid fa-briefcase"></i> <span data-id="Lihat Proyek" data-en="View Projects">Lihat Proyek</span></a>
+                <a href="#kontak" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> <span data-id="Hubungi Saya" data-en="Contact Me">Hubungi Saya</span></a>
             </div>
 
             <div class="social-links">
@@ -609,122 +719,142 @@
             <div class="active-project-card">
                 <div class="status-badge"></div>
                 <div>
-                    <strong style="font-size: 0.85rem; color: var(--purple-neon); text-transform: uppercase;">Proyek Berlangsung</strong>
-                    <p style="font-size: 0.9rem; font-weight: 600;">Firdaus Media - Initiating Creative & Strategic Marketing Agency (Madiun, ID)</p>
+                    <strong style="font-size: 0.85rem; color: var(--purple-neon); text-transform: uppercase;" data-id="Proyek Berlangsung" data-en="Ongoing Project">Proyek Berlangsung</strong>
+                    <p style="font-size: 0.9rem; font-weight: 600;" data-id="Firdaus Media - Initiating Creative & Strategic Marketing Agency (Madiun, ID)" data-en="Firdaus Media - Initiating Creative & Strategic Marketing Agency (Madiun, ID)">Firdaus Media - Initiating Creative & Strategic Marketing Agency (Madiun, ID)</p>
                 </div>
             </div>
         </div>
-
-        <!-- FOTO PROFIL DENGAN EFEK GLOW & PNG TRANSPARAN -->
-        <div class="image-frame">
-            <img src="foto-profil.jpg.jpg" alt="Muhammad Firdaus Haykal">
+<div class="image-frame">
+            <img id="profile-img" src="foto-profil.jpg.jpg" alt="Muhammad Firdaus Haykal">
         </div>
     </section>
 
-    <!-- TENTANG -->
+    <!-- TENTANG SAYA -->
     <section id="tentang">
-        <h2 class="section-title">Tentang Saya</h2>
-        <div class="about-card">
-            <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Muhammad Firdaus Haykal</h3>
-            <p class="about-text" id="txt-about">
-                Seorang Creativepreneur dan Graphic Designer yang berbasis di Indonesia dan memulai karier profesionalnya pada tahun 2023. Memiliki keminatan mendalam terhadap seni dan komunikasi audiovisual sejak kecil, serta telah berpengalaman dan menguasai berbagai keterampilan di bidang media kreatif. Menikmati membuat gebrakan dan inovasi kreatif dalam setiap visual atau proyek yang ditangani.
-            </p>
-            <h4 style="margin-bottom: 0.8rem;">Fokus & Minat Utama:</h4>
-            <div class="focus-tags">
-                <span class="focus-tag"><i class="fa-solid fa-bullhorn"></i> Media Event & Management</span>
-                <span class="focus-tag"><i class="fa-solid fa-clapperboard"></i> Creative Production & Directing</span>
-                <span class="focus-tag"><i class="fa-solid fa-chart-line"></i> Social Media & Digital Marketing</span>
+        <h2 class="section-title" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h2>
+        <div class="about-grid">
+            <div style="width: 100%; height: full; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); background: var(--card-bg); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);">
+                <img src="ID Card_Firdaus Media 2027 (Front).png" alt="Muhammad Firdaus Haykal" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;" onerror="this.src='foto-profil.jpg.jpg'">
+            </div>
+            
+            <div class="about-card">
+                <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Muhammad Firdaus Haykal</h3>
+                <p class="about-text" id="txt-about" data-id="Seorang Creativepreneur dan Graphic Designer yang berbasis di Indonesia dan memulai karier profesionalnya pada tahun 2023. Memiliki keminatan mendalam terhadap seni dan komunikasi audiovisual sejak kecil, serta telah berpengalaman dan menguasai berbagai keterampilan di bidang media kreatif. Menikmati membuat gebrakan dan inovasi kreatif dalam setiap visual atau proyek yang ditangani." data-en="An Indonesian-based Creativepreneur and Graphic Designer who started his professional career in 2023. Deeply passionate about art and audiovisual communication from an early age, with extensive experience and mastery across various creative media skills. Enjoys driving creative breakthroughs and innovations in every visual or project handled.">
+                    Seorang Creativepreneur dan Graphic Designer yang berbasis di Indonesia dan memulai karier profesionalnya pada tahun 2023. Memiliki keminatan mendalam terhadap seni dan komunikasi audiovisual sejak kecil, serta telah berpengalaman dan menguasai berbagai keterampilan di bidang media kreatif. Menikmati membuat gebrakan dan inovasi kreatif dalam setiap visual atau proyek yang ditangani.
+                </p>
+                <h4 style="margin-bottom: 0.8rem;" data-id="Fokus & Minat Utama:" data-en="Key Focus & Interests:">Fokus & Minat Utama:</h4>
+                <div class="focus-tags">
+                    <span class="focus-tag"><i class="fa-solid fa-bullhorn"></i> <span data-id="Media Event & Management" data-en="Event & Media Management">Media Event & Management</span></span>
+                    <span class="focus-tag"><i class="fa-solid fa-clapperboard"></i> <span data-id="Produksi & Arahan Kreatif" data-en="Creative Production & Directing">Produksi & Arahan Kreatif</span></span>
+                    <span class="focus-tag"><i class="fa-solid fa-chart-line"></i> <span data-id="Pemasaran Digital & Media Sosial" data-en="Social Media & Digital Marketing">Pemasaran Digital & Media Sosial</span></span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PRESTASI -->
+    <!-- PRESTASI & SERTIFIKASI -->
     <section id="prestasi">
-        <h2 class="section-title">Prestasi & Sertifikasi</h2>
+        <h2 class="section-title" data-id="Prestasi & Sertifikasi" data-en="Awards & Certifications">Prestasi & Sertifikasi</h2>
         <div class="grid-2">
-            <div class="cert-card">
-                <div class="cert-badge"><i class="fa-solid fa-trophy"></i> Juara 1</div>
-                <h3>Poster Kreatif Ekonomi Islam</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Sharia Economic Fest (SE-FEST) UIN Sunan Gunung Djati Bandung 2025</p>
+            
+            <div class="cert-card" onclick="openModal('modal-prestasi-1')">
+                <div style="width: 100%; height: 220px; overflow: hidden; background: #fff;">
+                    <img src="foto-juara-poster ekis.jpg" alt="Dokumentasi Juara" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="cert-badge"><i class="fa-solid fa-trophy"></i> <span data-id="Juara 1" data-en="1st Place">Juara 1</span></div>
+                    <h3 style="margin-top: 0.5rem;" data-id="Poster Kreatif Ekonomi Islam" data-en="Islamic Economics Creative Poster">Poster Kreatif Ekonomi Islam</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Sharia Economic Fest (SE-FEST) UIN Sunan Gunung Djati Bandung 2025</p>
+                </div>
             </div>
-            <div class="cert-card">
-                <div class="cert-badge"><i class="fa-solid fa-trophy"></i> Juara 1</div>
-                <h3>Desain Grafis Produk</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Classmeeting GOLDEN GENERATION SMK Negeri 2 Kota Madiun 2023</p>
+
+            <div class="cert-card" onclick="openModal('modal-prestasi-2')">
+                <div style="width: 100%; height: 220px; overflow: hidden; background: #fff;">
+                    <img src="foto-juara-desaingrafis.jpg" alt="Dokumentasi Juara" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="cert-badge"><i class="fa-solid fa-trophy"></i> <span data-id="Juara 1" data-en="1st Place">Juara 1</span></div>
+                    <h3 style="margin-top: 0.5rem;" data-id="Desain Grafis Produk (Kejuruan Multimedia)" data-en="Product Graphic Design (Multimedia Vocational)">Desain Grafis Produk (Kejuruan Multimedia)</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">Classmeeting GOLDEN GENERATION SMK Negeri 2 Kota Madiun 2023</p>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <!-- PROYEK -->
+    <!-- PROYEK UNGGULAN -->
     <section id="proyek">
-        <h2 class="section-title">Proyek Unggulan</h2>
+        <h2 class="section-title" data-id="Proyek Unggulan" data-en="Featured Projects">Proyek Unggulan</h2>
         <div class="grid-2">
-            <div class="project-card">
+            
+            <div class="project-card" onclick="openModal('modal-proyek-1')" style="padding: 1.5rem;">
                 <span style="font-size: 0.8rem; font-weight: 700; color: var(--purple-neon);">2026</span>
                 <h3 style="margin: 0.5rem 0;">Visual Rebranding & Digital Optimization</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">GARAGE86 Professional Car Services Magetan</p>
             </div>
-            <div class="project-card">
+
+            <div class="project-card" onclick="openModal('modal-proyek-2')" style="padding: 1.5rem;">
                 <span style="font-size: 0.8rem; font-weight: 700; color: var(--purple-neon);">2026</span>
                 <h3 style="margin: 0.5rem 0;">Creative Media Partner Sponsorship</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">MILAD KE-23 HAMFARA 2026</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem;" data-id="MILAD KE-23 HAMFARA 2026" data-en="HAMFARA 23RD ANNIVERSARY 2026">MILAD KE-23 HAMFARA 2026</p>
             </div>
+
         </div>
     </section>
 
     <!-- PENGALAMAN -->
     <section id="pengalaman">
-        <h2 class="section-title">Pengalaman Organisasi & Kerja</h2>
+        <h2 class="section-title" data-id="Pengalaman Organisasi & Kerja" data-en="Experience & Leadership">Pengalaman Organisasi & Kerja</h2>
         <div class="exp-container">
-            <!-- Pendidikan & Organisasi -->
             <div class="exp-column">
-                <h3><i class="fa-solid fa-graduation-cap"></i> Pendidikan & Organisasi</h3>
+                <h3><i class="fa-solid fa-graduation-cap"></i> <span data-id="Pendidikan & Organisasi" data-en="Education & Organization">Pendidikan & Organisasi</span></h3>
                 
                 <div class="timeline-item">
                     <div class="timeline-title">STEI Hamfara Yogyakarta</div>
-                    <div class="timeline-date">S1 Manajemen Bisnis Syariah (2024 - Sekarang)</div>
+                    <div class="timeline-date" data-id="S1 Manajemen Bisnis Syariah (2024 - Sekarang)" data-en="Bachelor in Sharia Business Management (2024 - Present)">S1 Manajemen Bisnis Syariah (2024 - Sekarang)</div>
                     <ul class="timeline-list">
-                        <li>Ketua BEM STEI Hamfara Kabinet Konstelasi (2026/2027)</li>
-                        <li>Ketua Pelaksana Seminar Teatrikal GEO Hamfara (2026)</li>
-                        <li>Koordinator Divisi Media & Informasi Milad Ke-23 Hamfara (2026)</li>
-                        <li>Koordinator Divisi Media Pekan Ta'aruf STEI Hamfara (2026)</li>
-                        <li>Kepala Dept. Komunikasi & Informasi BEM Kabinet Revolusi (2025/2026)</li>
-                        <li>Koordinator Divisi Media B-MELT Kulon Progo (2025)</li>
-                        <li>Koordinator Divisi Media Talkshow GEO Hamfara (2025)</li>
+                        <li data-id="Ketua BEM STEI Hamfara Kabinet Konstelasi (2026/2027)" data-en="President of Student Executive Board STEI Hamfara Constellation Cabinet (2026/2027)">Ketua BEM STEI Hamfara Kabinet Konstelasi (2026/2027)</li>
+                        <li data-id="Ketua Pelaksana Seminar Teatrikal GEO Hamfara (2026)" data-en="Chairman of GEO Hamfara Theatrical Seminar Event (2026)">Ketua Pelaksana Seminar Teatrikal GEO Hamfara (2026)</li>
+                        <li data-id="Koordinator Divisi Media & Informasi Milad Ke-23 Hamfara (2026)" data-en="Media & Information Division Coordinator for Hamfara's 23rd Anniversary (2026)">Koordinator Divisi Media & Informasi Milad Ke-23 Hamfara (2026)</li>
+                        <li data-id="Koordinator Divisi Media Pekan Ta'aruf STEI Hamfara (2026)" data-en="Media Division Coordinator for STEI Hamfara Ta'aruf Week (2026)">Koordinator Divisi Media Pekan Ta'aruf STEI Hamfara (2026)</li>
+                        <li data-id="Kepala Dept. Komunikasi & Informasi BEM Kabinet Revolusi (2025/2026)" data-en="Head of Communication & Information Dept. Student Board Revolution Cabinet (2025/2026)">Kepala Dept. Komunikasi & Informasi BEM Kabinet Revolusi (2025/2026)</li>
+                        <li data-id="Koordinator Divisi Media B-MELT Kulon Progo (2025)" data-en="Media Division Coordinator of B-MELT Kulon Progo (2025)">Koordinator Divisi Media B-MELT Kulon Progo (2025)</li>
+                        <li data-id="Koordinator Divisi Media Talkshow GEO Hamfara (2025)" data-en="Media Division Coordinator of GEO Hamfara Talkshow (2025)">Koordinator Divisi Media Talkshow GEO Hamfara (2025)</li>
                     </ul>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-title">SMK Negeri 2 Kota Madiun</div>
-                    <div class="timeline-date">Jurusan Multimedia (2021 - 2024)</div>
+                    <div class="timeline-date" data-id="Jurusan Multimedia (2021 - 2024)" data-en="Multimedia Major (2021 - 2024)">Jurusan Multimedia (2021 - 2024)</div>
                     <ul class="timeline-list">
-                        <li>Koordinator Divisi Kominfo OSIS (2022/2023)</li>
-                        <li>Kepala Tim Redaksi & Jurnalis JAC (2022/2023)</li>
+                        <li data-id="Koordinator Divisi Kominfo OSIS (2022/2023)" data-en="Student Council Communication & Info Division Coordinator (2022/2023)">Koordinator Divisi Kominfo OSIS (2022/2023)</li>
+                        <li data-id="Kepala Divisi Media Seluruh Program Kerja OSIS (2022/2023)" data-en="Head of Media Division for All Student Council Programs (2022/2023)">Kepala Divisi Media Seluruh Program Kerja OSIS (2022/2023)</li>
+                        <li data-id="Kepala Tim Redaksi & Majalah Dinding JAC (2022/2023)" data-en="Head of Editorial Team & Wall Magazine JAC (2022/2023)">Kepala Tim Redaksi & Majalah Dinding JAC (2022/2023)</li>
+                        <li data-id="Director of Photography & Editor Film JAC (2022/2023)" data-en="Director of Photography & Film Editor of JAC (2022/2023)">Director of Photography & Editor Film JAC (2022/2023)</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Pekerjaan -->
             <div class="exp-column">
-                <h3><i class="fa-solid fa-briefcase"></i> Pengalaman Kerja</h3>
+                <h3><i class="fa-solid fa-briefcase"></i> <span data-id="Pengalaman Kerja" data-en="Work Experience">Pengalaman Kerja</span></h3>
                 
                 <div class="timeline-item">
-                    <div class="timeline-title">DESAINER GRAFIS</div>
-                    <div class="timeline-date">THE OWNER GROUP (2026)</div>
+                    <div class="timeline-title" data-id="Desainer Grafis" data-en="Graphic Designer">Desainer Grafis</div>
+                    <div class="timeline-date">The Owner Group (2026)</div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-title">FREELANCE DESAINER GRAFIS</div>
-                    <div class="timeline-date">FIRDAUS MEDIA (2025 - Sekarang)</div>
+                    <div class="timeline-title" data-id="Direktur Kreatif & Desainer Grafis" data-en="Creative Director & Graphic Designer">Direktur Kreatif & Desainer Grafis</div>
+                    <div class="timeline-date" data-id="Firdaus Media (2025 - Sekarang)" data-en="Firdaus Media (2025 - Present)">Firdaus Media (2025 - Sekarang)</div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-title">ADMIN MEDIA SOSIAL & DESAINER GRAFIS</div>
-                    <div class="timeline-date">ZISWAH Hamfara (2025)</div>
+                    <div class="timeline-title" data-id="Admin Media Sosial & Desainer Grafis" data-en="Social Media Admin & Graphic Designer">Admin Media Sosial & Desainer Grafis</div>
+                    <div class="timeline-date">ZISWAH STEI Hamfara (2025)</div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-title">MAGANG DESAINER GRAFIS REMOTE</div>
+                    <div class="timeline-title" data-id="Magang Desainer Grafis Remote" data-en="Remote Graphic Design Intern">Magang Desainer Grafis Remote</div>
                     <div class="timeline-date">CREATIVE.UX Jakarta (2023)</div>
                 </div>
             </div>
@@ -733,29 +863,29 @@
 
     <!-- KEAHLIAN -->
     <section id="keahlian">
-        <h2 class="section-title">Keahlian & Perangkat Software</h2>
+        <h2 class="section-title" data-id="Keahlian & Perangkat Software" data-en="Skills & Software Tools">Keahlian & Perangkat Software</h2>
         <div class="skills-wrapper">
             <div class="skills-grid">
                 <div class="skill-box">
-                    <h4><i class="fa-solid fa-palette"></i> Desain Kreatif & Visual</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Desain Grafis, Identitas Visual, Pengembangan Konsep Kreatif, Komunikasi Visual.</p>
+                    <h4 data-id="Desain Kreatif & Visual" data-en="Creative & Visual Design"><i class="fa-solid fa-palette"></i> Desain Kreatif & Visual</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-id="Desain Grafis, Identitas Visual, Pengembangan Konsep Kreatif, Komunikasi Visual." data-en="Graphic Design, Visual Identity, Creative Concept Development, Visual Communication.">Desain Grafis, Identitas Visual, Pengembangan Konsep Kreatif, Komunikasi Visual.</p>
                 </div>
                 <div class="skill-box">
-                    <h4><i class="fa-solid fa-video"></i> Produksi Audiovisual</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Foto-Videografi, Penyuntingan Video, Penulisan Naskah, Publikasi Konten.</p>
+                    <h4 data-id="Produksi Audiovisual" data-en="Audiovisual Production"><i class="fa-solid fa-video"></i> Produksi Audiovisual</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-id="Foto-Videografi, Penyuntingan Video, Penulisan Naskah, Publikasi Konten." data-en="Photo-Videography, Video Editing, Scriptwriting, Content Publication.">Foto-Videografi, Penyuntingan Video, Penulisan Naskah, Publikasi Konten.</p>
                 </div>
                 <div class="skill-box">
-                    <h4><i class="fa-solid fa-users"></i> Komunikasi & Kepemimpinan</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Komunikasi Strategis, Pengelolaan Media, Kepemimpinan & Koordinasi Tim.</p>
+                    <h4 data-id="Komunikasi & Kepemimpinan" data-en="Communication & Leadership"><i class="fa-solid fa-users"></i> Komunikasi & Kepemimpinan</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-id="Komunikasi Strategis, Pengelolaan Media, Kepemimpinan & Koordinasi Tim." data-en="Strategic Communication, Media Management, Leadership & Team Coordination.">Komunikasi Strategis, Pengelolaan Media, Kepemimpinan & Koordinasi Tim.</p>
                 </div>
                 <div class="skill-box">
-                    <h4><i class="fa-solid fa-chart-pie"></i> Manajemen Kreatif</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Manajemen Proyek & Acara, Perencanaan Kegiatan, Pengelolaan Relasi Kemitraan.</p>
+                    <h4 data-id="Manajemen Kreatif" data-en="Creative Management"><i class="fa-solid fa-chart-pie"></i> Manajemen Kreatif</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" data-id="Manajemen Proyek & Acara, Perencanaan Kegiatan, Pengelolaan Relasi Kemitraan." data-en="Project & Event Management, Activity Planning, Partnership Relationship Management.">Manajemen Proyek & Acara, Perencanaan Kegiatan, Pengelolaan Relasi Kemitraan.</p>
                 </div>
             </div>
 
             <div class="software-box">
-                <h4>Software & Tools</h4>
+                <h4 data-id="Software & Tools" data-en="Software & Tools">Software & Tools</h4>
                 <div class="software-list">
                     <span class="software-pill">Adobe Photoshop</span>
                     <span class="software-pill">Premiere Pro</span>
@@ -773,7 +903,7 @@
 
     <!-- KONTAK -->
     <section id="kontak">
-        <h2 class="section-title">Mari Terhubung</h2>
+        <h2 class="section-title" data-id="Mari Terhubung" data-en="Let's Connect">Mari Terhubung</h2>
         <div class="contact-container">
             <div class="contact-info">
                 <div class="info-card">
@@ -787,45 +917,97 @@
                 <div class="info-card">
                     <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
                     <div>
-                        <strong>Email Kantor / Personal</strong>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">alfirdausymedia@gmail.com</p>
-                        <p style="font-size: 0.85rem; color: var(--text-muted);">namaguehaykal@gmail.com</p>
+                        <strong>Email</strong>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);" data-id="Kantor: alfirdausymedia@gmail.com" data-en="Office: alfirdausymedia@gmail.com">Kantor: alfirdausymedia@gmail.com</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);" data-id="Pribadi: namaguehaykal@gmail.com" data-en="Personal: namaguehaykal@gmail.com">Pribadi: namaguehaykal@gmail.com</p>
                     </div>
                 </div>
 
                 <div class="info-card">
                     <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
                     <div>
-                        <strong>Domisili Aktif</strong>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Madiun & Yogyakarta, Indonesia</p>
+                        <strong data-id="Domisili Aktif" data-en="Active Domicile">Domisili Aktif</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-id="Madiun & Yogyakarta, Indonesia" data-en="Madiun & Yogyakarta, Indonesia">Madiun & Yogyakarta, Indonesia</p>
                     </div>
                 </div>
             </div>
 
             <form class="contact-form" onsubmit="sendToWhatsApp(event)">
-                <h3 style="margin-bottom: 0.5rem;">Kirim Pesan Cepat</h3>
+                <h3 style="margin-bottom: 0.5rem;" data-id="Kirim Pesan Cepat" data-en="Send Quick Message">Kirim Pesan Cepat</h3>
                 <div class="form-group">
-                    <label>Nama Anda</label>
-                    <input type="text" id="sender-name" placeholder="Masukkan nama" required>
+                    <label data-id="Nama Anda" data-en="Your Name">Nama Anda</label>
+                    <input type="text" id="sender-name" placeholder="Masukkan nama" data-id-placeholder="Masukkan nama" data-en-placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
-                    <label>Subjek / Topik</label>
+                    <label data-id="Subjek / Topik" data-en="Subject / Topic">Subjek / Topik</label>
                     <input type="text" id="sender-subject" placeholder="Diskusi Proyek / Kerjasama" required>
                 </div>
                 <div class="form-group">
-                    <label>Pesan</label>
+                    <label data-id="Pesan" data-en="Message">Pesan</label>
                     <textarea id="sender-message" rows="4" placeholder="Tuliskan pesan Anda..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer; justify-content: center;">
-                    <i class="fa-solid fa-paper-plane"></i> Kirim via WhatsApp
+                <button type="submit" class="btn neon-gradient-btn" style="border: none; cursor: pointer; justify-content: center;">
+                    <i class="fa-solid fa-paper-plane"></i> <span data-id="Kirim via WhatsApp" data-en="Send via WhatsApp">Kirim via WhatsApp</span>
                 </button>
             </form>
         </div>
     </section>
 
+    <!-- MODAL POP-UP PRESTASI 1 -->
+    <div id="modal-prestasi-1" class="modal-overlay" onclick="outsideClose(event, 'modal-prestasi-1')">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-prestasi-1')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="cert-badge" style="margin-bottom:0.5rem;"><i class="fa-solid fa-trophy"></i> <span data-id="Juara 1" data-en="1st Place">Juara 1</span></div>
+            <h2>Poster Kreatif Ekonomi Islam</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Sharia Economic Fest (SE-FEST) UIN Sunan Gunung Djati Bandung 2025</p>
+            <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;" data-id="Kompetisi rancangan poster kreatif tingkat nasional yang mengangkat tema ekonomi syariah, menuntut kedalaman riset konseptual serta eksekusi visual yang estetis dan komunikatif." data-en="National-level creative poster design competition highlighting the theme of sharia economics, demanding deep conceptual research and aesthetic, communicative visual execution.">Kompetisi rancangan poster kreatif tingkat nasional yang mengangkat tema ekonomi syariah, menuntut kedalaman riset konseptual serta eksekusi visual yang estetis dan komunikatif.</p>
+            <h4 style="margin-bottom: 0.5rem; font-size: 1rem;" data-id="Dokumentasi, Poster & Foto Juara:" data-en="Documentation, Poster & Winner Photos:">Dokumentasi, Poster & Foto Juara:</h4>
+            <div class="modal-gallery-grid">
+                <div class="modal-img-item"><img src="foto-juara-poster ekis.jpg" alt="Dokumentasi"><p style="font-size: 0.75rem; text-align: center; margin-top: 0.3rem; color: var(--text-muted);" data-id="Foto Dokumentasi" data-en="Documentation Photo">Foto Dokumentasi</p></div>
+                <div class="modal-img-item"><img src="sertifikat-poster.png" alt="Sertifikat"><p style="font-size: 0.75rem; text-align: center; margin-top: 0.3rem; color: var(--text-muted);" data-id="Sertifikat Kejuaraan" data-en="Championship Certificate">Sertifikat Kejuaraan</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POP-UP PRESTASI 2 -->
+    <div id="modal-prestasi-2" class="modal-overlay" onclick="outsideClose(event, 'modal-prestasi-2')">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-prestasi-2')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="cert-badge" style="margin-bottom:0.5rem;"><i class="fa-solid fa-trophy"></i> <span data-id="Juara 1" data-en="1st Place">Juara 1</span></div>
+            <h2>Desain Grafis Produk (Kejuruan Multimedia)</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Classmeeting GOLDEN GENERATION SMK Negeri 2 Kota Madiun 2023</p>
+            <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;" data-id="Perancangan identitas visual dan materi promosi produk komersial yang mengutamakan tata letak profesional dan daya tarik komersial." data-en="Visual identity design and commercial product promotional materials emphasizing professional layout and commercial appeal.">Perancangan identitas visual dan materi promosi produk komersial yang mengutamakan tata letak profesional dan daya tarik komersial.</p>
+            <h4 style="margin-bottom: 0.5rem; font-size: 1rem;" data-id="Dokumentasi, Poster & Foto Juara:" data-en="Documentation, Poster & Winner Photos:">Dokumentasi, Poster & Foto Juara:</h4>
+            <div class="modal-gallery-grid">
+                <div class="modal-img-item"><img src="foto-juara-desain.jpg" alt="Dokumentasi"><p style="font-size: 0.75rem; text-align: center; margin-top: 0.3rem; color: var(--text-muted);" data-id="Foto Dokumentasi" data-en="Documentation Photo">Foto Dokumentasi</p></div>
+                <div class="modal-img-item"><img src="sertifikat-desain.png" alt="Sertifikat"><p style="font-size: 0.75rem; text-align: center; margin-top: 0.3rem; color: var(--text-muted);" data-id="Sertifikat Kejuaraan" data-en="Championship Certificate">Sertifikat Kejuaraan</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POP-UP PROYEK 1 -->
+    <div id="modal-proyek-1" class="modal-overlay" onclick="outsideClose(event, 'modal-proyek-1')">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-proyek-1')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Visual Rebranding & Digital Optimization</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">GARAGE86 Professional Car Services Magetan (2026)</p>
+            <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;" data-id="Eksekusi proyek perombakan identitas visual merek secara menyeluruh dan strategi optimasi pemasaran digital untuk meningkatkan kredibilitas bengkel." data-en="Execution of comprehensive brand visual identity overhaul and digital marketing optimization strategy to enhance workshop credibility.">Eksekusi proyek perombakan identitas visual merek secara menyeluruh dan strategi optimasi pemasaran digital untuk meningkatkan kredibilitas bengkel.</p>
+        </div>
+    </div>
+
+    <!-- MODAL POP-UP PROYEK 2 -->
+    <div id="modal-proyek-2" class="modal-overlay" onclick="outsideClose(event, 'modal-proyek-2')">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-proyek-2')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Creative Media Partner Sponsorship</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;" data-id="MILAD KE-23 HAMFARA 2026" data-en="HAMFARA 23RD ANNIVERSARY 2026">MILAD KE-23 HAMFARA 2026</p>
+            <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;" data-id="Mengelola kemitraan strategis media kreatif dan publikasi visual untuk menyukseskan perhelatan akbar perayaan Milad institusi." data-en="Managing creative media strategic partnerships and visual publications to ensure the success of the institution's anniversary grand event.">Mengelola kemitraan strategis media kreatif dan publikasi visual untuk menyukseskan perhelatan akbar perayaan Milad institusi.</p>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Muhammad Firdaus Haykal (Firdaus Media). Built with HTML & CSS.</p>
+        <p data-id="&copy; 2026 Muhammad Firdaus Haykal (Firdaus Media). Built with HTML & CSS." data-en="&copy; 2026 Muhammad Firdaus Haykal (Firdaus Media). Built with HTML & CSS.">&copy; 2026 Muhammad Firdaus Haykal (Firdaus Media). Built with HTML & CSS.</p>
     </footer>
 
     <!-- JAVASCRIPT UTILS -->
@@ -842,20 +1024,69 @@
             window.open(`https://wa.me/${targetPhone}?text=${text}`, '_blank');
         }
 
+// Fitur Toggle Light & Dark Mode + Ganti Foto Profil Otomatis
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const profileImg = document.getElementById('profile-img');
+            
+            // SESUAIKAN NAMA FILE DI BAWAH INI DENGAN NAMA FILE FOTOMU:
+            const lightModeImg = 'foto-profil.jpg.jpg'; // Nama file foto light mode
+            const darkModeImg = 'foto-profil.jpg2.png';   // Ganti dengan nama file foto dark mode yang ada di foldermu
+
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                profileImg.src = darkModeImg; // Memanggil foto dark mode
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon';
+                profileImg.src = lightModeImg; // Kembali ke foto light mode
+            }
+        }
+
+// Fungsi Toggle Bahasa Menyeluruh Dari Awal hingga Akhir
         let currentLang = 'ID';
         function toggleLanguage() {
+            // Ubah status bahasa
             currentLang = currentLang === 'ID' ? 'ENG' : 'ID';
             
-            document.querySelectorAll('nav a').forEach(el => {
-                el.innerText = el.getAttribute(`data-${currentLang.toLowerCase()}`);
+            // Tentukan suffix atribut HTML ('id' atau 'en')
+            // Jika bahasa aktif 'ENG', ambil dari data-en. Jika 'ID', ambil dari data-id.
+            const langKey = currentLang === 'ENG' ? 'en' : 'id';
+
+            // Menerjemahkan semua elemen dengan atribut data-id / data-en
+            document.querySelectorAll('[data-id]').forEach(el => {
+                const translation = el.getAttribute(`data-${langKey}`);
+                if (translation) {
+                    el.innerText = translation;
+                }
             });
 
+            // Terjemahan khusus untuk paragraf naratif di Beranda & Tentang
             if(currentLang === 'ENG') {
                 document.getElementById('txt-role').innerText = "Creativepreneur & Creative Director at Firdaus Media Agency.";
                 document.getElementById('txt-subhead').innerText = '"I help brands build professional identities and strategic, sustainable marketing communications."';
+                document.getElementById('txt-about').innerText = "An Indonesian-based Creativepreneur and Graphic Designer who started his professional career in 2023. Deeply passionate about art and audiovisual communication from an early age, with extensive experience and mastery across various creative media skills. Enjoys driving creative breakthroughs and innovations in every visual or project handled.";
             } else {
                 document.getElementById('txt-role').innerText = "Creativepreneur & Creative Director di Firdaus Media Agency.";
                 document.getElementById('txt-subhead').innerText = '"Saya membantu brand membangun identitas profesional dan komunikasi pemasaran yang strategis serta berkelanjutan."';
+                document.getElementById('txt-about').innerText = "Seorang Creativepreneur dan Graphic Designer yang berbasis di Indonesia dan memulai karier profesionalnya pada tahun 2023. Memiliki keminatan mendalam terhadap seni dan komunikasi audiovisual sejak kecil, serta telah berpengalaman dan menguasai berbagai keterampilan di bidang media kreatif. Menikmati membuat gebrakan dan inovasi kreatif dalam setiap visual atau proyek yang ditangani.";
+            }
+        }
+
+        // Fungsi Kontrol Modal Pop-up
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        function outsideClose(event, id) {
+            if (event.target.id === id) { 
+                closeModal(id); 
             }
         }
     </script>
